@@ -5,7 +5,7 @@ type Props = {
   defaultUnit: Units; // the unit of area parameter
 };
 
-type Units = "ac" | "m2";
+type Units = "ac" | "ha";
 
 const FieldArea = ({ area, defaultUnit }: Props) => {
   const [fieldArea, setFieldArea] = useState(area);
@@ -13,14 +13,14 @@ const FieldArea = ({ area, defaultUnit }: Props) => {
 
   // convert an area from current unit to desired unit
   const convertArea = useCallback((area: number, to: Units): number => {
-    const factor = 0.000247105;
+    const factor = 0.4046856422;
 
     if (to === "ac") {
-      return area * factor;
+      return area / factor;
     }
 
-    if (to === "m2") {
-      return area / factor;
+    if (to === "ha") {
+      return area * factor;
     }
 
     return 0;
@@ -29,14 +29,10 @@ const FieldArea = ({ area, defaultUnit }: Props) => {
   // when the user change the area unit
   const onChangeAreaUnit = (e: any) => {
     setSelectedUnit(e.target.value);
-  };
-
-  // when user change area unit, this effect is executed to convert the field area to unit provided
-  useEffect(() => {
     setFieldArea((currentFieldArea) =>
-      convertArea(currentFieldArea, selectedUnit)
+      convertArea(currentFieldArea, e.target.value)
     );
-  }, [convertArea, selectedUnit]);
+  };
 
   return (
     <>
@@ -44,13 +40,13 @@ const FieldArea = ({ area, defaultUnit }: Props) => {
       <div>
         <input
           type="radio"
-          id="m2"
-          value="m2"
+          id="ha"
+          value="ha"
           name="areaType"
-          checked={selectedUnit === "m2"}
+          checked={selectedUnit === "ha"}
           onChange={onChangeAreaUnit}
         />
-        <label htmlFor="m2">m2</label>
+        <label htmlFor="ha">ha</label>
         <input
           type="radio"
           id="ac"

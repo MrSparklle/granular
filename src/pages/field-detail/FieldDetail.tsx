@@ -1,6 +1,6 @@
 import { ExtendedField } from "models/types";
 import React, { useEffect, useState } from "react";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import { FieldsService } from "services/Fields.service";
 import Flag from "react-world-flags";
@@ -48,7 +48,9 @@ const FieldDetail = () => {
 
         // calculating the area based on geometry data
         const area = calcArea(fieldDetailData.geoData.geometry);
-        setFieldArea(area);
+
+        // convert from m2 to ac
+        setFieldArea(area * 0.000247105);
       } catch (error: any) {
         setError(
           `Ops, something was wrong. Error message: ${
