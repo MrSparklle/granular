@@ -107,7 +107,7 @@ const Fields = () => {
     <Container fluid="lg">
       <SearchField
         fieldTypes={fieldTypes}
-        onSearch={(term: string, type: string) => onSearchHandler(term, type)}
+        onSearchFilter={(term: string, type: string) => onSearchHandler(term, type)}
       />
       <TableData
         fields={fields}

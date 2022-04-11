@@ -12,7 +12,7 @@ type Props = {
 
 const TableData = ({ fields, sortOrderText, sortBy, onSortFields }: Props) => {
   return (
-    <Table>
+    <Table hover>
       <thead>
         <tr>
           <th data-testid="fieldHeaderId" onClick={() => onSortFields("id")}>

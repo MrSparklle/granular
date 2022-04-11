@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 type Props = {
-  area: number;
-  defaultUnit: Units;
+  area: number; // the current area value
+  defaultUnit: Units; // the unit of area parameter
 };
+
 type Units = "ac" | "m2";
 
 const FieldArea = ({ area, defaultUnit }: Props) => {

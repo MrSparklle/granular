@@ -3,24 +3,26 @@ import React, { useState } from "react";
 import { Container, FormGroup, Input, Label } from "reactstrap";
 
 type Props = {
-  fieldTypes: FieldType[];
-  onSearch: Function;
+  fieldTypes: FieldType[]; // arry of fields type, used to populate the select field
+  onSearchFilter: Function; // when the user search or filter
 };
 
-const SearchField = ({ fieldTypes, onSearch }: Props) => {
-  console.log("search render");
-
+const SearchField = ({ fieldTypes, onSearchFilter }: Props) => {
+  // field name search term
   const [fieldName, setFieldName] = useState("");
+  // field type search term
   const [fieldType, setFieldType] = useState("");
 
+  // when user search for specific field name
   const onSearchHandler = (e: any) => {
     setFieldName(e.target.value);
-    onSearch(e.target.value.trim(), fieldType);
+    onSearchFilter(e.target.value.trim(), fieldType);
   };
 
+  // when user filter for specific field type
   const onSelectTypeHandler = (e: any) => {
     setFieldType(e.target.value);
-    onSearch(fieldName, e.target.value.trim());
+    onSearchFilter(fieldName, e.target.value.trim());
   };
   return (
     <Container>
