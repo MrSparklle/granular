@@ -86,6 +86,7 @@ const Fields = () => {
     }
   };
 
+  // when user sort fields
   const onSortFields = (sortBy: string) => {
     // if the data is not filtered yet sortOrder = 0, else, invert sort order
     const newSortOrder = !sortOrder ? -1 : sortOrder * -1;

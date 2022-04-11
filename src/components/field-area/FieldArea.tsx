@@ -13,7 +13,7 @@ const FieldArea = ({ area, defaultUnit }: Props) => {
 
   // convert an area from current unit to desired unit
   const convertArea = useCallback((area: number, to: Units): number => {
-    const factor = 0.0001;
+    const factor = 0.000247105;
 
     if (to === "ac") {
       return area * factor;
